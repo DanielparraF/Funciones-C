@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <ctype.h>
 //---------------------------------------------------------------------fechas-------------------------------------------
 void valiteDate(char date[]){
     int day,month,year;
@@ -125,10 +125,29 @@ char* calculateNumber(int number) {
     return romano;
 }
 
+//Own Name�s Function
+
+void ownName(char* str){
+
+
+    //Eliminar los espacios
+
+    for(int i  = 0, j = 0; i < strlen(str); i++){
+        if(str[i] != ' '){
+            str[j] = str[i];
+            j++;
+        }
+    }
+
+    str[0] = toupper(str[0]);
+
+    printf("%s", str);
+}
+
 int main() {
     int option,number;
     char dateIn[10];
-    
+    char name[10];
     printf("------Bienvenido a su menu de funciones------\n"
            "1. Convierte de Numeros entero a numeros romano\n"
            "2. Factores Primos. \n"
@@ -148,15 +167,19 @@ int main() {
             scanf("%i",&number);
             if((number>=1)&&(number<=3000)){
                 char *result= calculateNumber(number);
-                printf("el resultado de su numero es ...: %s",result);
+                printf("El resultado de su numero es ...: %s",result);
                 free(result);
             }else{
-                printf("digite un numero entre 1 y 3000");
+                printf("Digite un numero entre 1 y 3000");
             }
             break;
         case 2:
             break;
         case 3:
+            printf("Ingrese el nombre que desea convertir a nombre propio: ");
+            scanf("%s", name);
+            ownName(name);
+
             break;
         case 4:
             break;
