@@ -141,13 +141,44 @@ void ownName(char* str){
 
     str[0] = toupper(str[0]);
 
-    printf("%s", str);
+    printf("%s\n", str);
+}
+
+int sumDivisors(int number){
+
+    int suma = 1;
+    for (int i = 2; i <= number/2; i++){
+
+        if(number % i == 0){
+            suma+= i;
+        }
+
+    }
+
+    return suma;
+}
+
+void friendsNumbers(int num1, int num2){
+
+    //SUMA DE LOS DIVISORES DEL PRIMER NUMERO
+
+    if(sumDivisors(num1) == num2 && sumDivisors(num2) == num1){
+        printf("True: (%i y %i son numeros amigos)\n" , num1 , num2);
+    } else{
+        printf("False: (%i y %i NO son numeros amigos)\n" , num1 , num2);
+    }
+
+    
+
+    
+
 }
 
 int main() {
-    int option,number;
+    int option,number, num1, num2;
     char dateIn[10];
-    char name[10];
+    char name[28];
+    do{
     printf("------Bienvenido a su menu de funciones------\n"
            "1. Convierte de Numeros entero a numeros romano\n"
            "2. Factores Primos. \n"
@@ -184,6 +215,11 @@ int main() {
         case 4:
             break;
         case 5:
+
+            printf("Digite dos valores numericos para comprobar si son numeros amigos:\n");
+            scanf("%i", &num1);
+            scanf("%i", &num2);
+            friendsNumbers(num1,num2);
             break;
         case 6:
             printf("ingrese una fecha en el formato dd/mm/aaaa\n");
@@ -199,5 +235,7 @@ int main() {
         case 10:
             break;
     }
+    }while(option != 10);
+    
     return 0;
 }
