@@ -125,7 +125,7 @@ char* calculateNumber(int number) {
     return romano;
 }
 
-//Own Name�s Function
+//Own Names Function
 
 void ownName(char* str){
 
@@ -167,17 +167,27 @@ void friendsNumbers(int num1, int num2){
     } else{
         printf("False: (%i y %i NO son numeros amigos)\n" , num1 , num2);
     }
+}
 
-    
+int scalarProduct(int array1[], int array2[]){
+    int scalar =0;
+    if(sizeof(array1) != sizeof(array2)){
+        return -1;
+    } else{
+        for (int i = 0; i < sizeof(array1)-1; i++){
+            scalar += array1[i] * array2[i];
+        }
 
-    
-
+        return scalar;
+    }
 }
 
 int main() {
     int option,number, num1, num2;
     char dateIn[10];
     char name[28];
+    int array1[] = {2 ,4 ,6};
+    int array2[] = {2 ,4 ,6};
     do{
     printf("------Bienvenido a su menu de funciones------\n"
            "1. Convierte de Numeros entero a numeros romano\n"
@@ -227,6 +237,9 @@ int main() {
             valiteDate(dateIn);
             break;
         case 7:
+
+            printf("El producto punto es: %d:\n", scalarProduct(array1,array2));
+
             break;
         case 8:
             break;
