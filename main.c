@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+
 //---------------------------------------------------------------------fechas-------------------------------------------
 void valiteDate(char date[])
 {
@@ -14,7 +15,7 @@ void valiteDate(char date[])
 
             if ((month == 2 && day > 29) || (month == 4 && day > 30) || (month == 6 && day > 30) || (month == 9 && day > 30) || (month == 11 && day > 30))
             {
-                printf("fechas Inexistente");
+                printf("Fecha Inexistente");
                 return;
             }
             printf("La fecha es: %d de ", day);
@@ -165,12 +166,15 @@ char *calculateNumber(int number)
 
 // Own Names Function
 
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-
 void ownName(char *str)
 {
+    for (int i = 0; str[i]; i++) {
+
+            str[i] = tolower(str[i]);
+        
+        
+    }
+
     char *split;
     char *aux[50];
     int i = 0;
@@ -181,15 +185,17 @@ void ownName(char *str)
         i++;
         split = strtok(NULL, " ");
     }
-
     for (int j = 0; j < i; j++)
     {
-        if (strncmp(aux[j], " ", 1) != 0)
+        if (strlen(aux[j]) > 1)
+
+        
         {
             aux[j][0] = toupper(aux[j][0]);
         }
         printf("%s ", aux[j]);
     }
+    printf("\n");
 }
 
 int sumDivisors(int number)
@@ -223,12 +229,11 @@ void friendsNumbers(int num1, int num2)
     }
 }
 
-
-int scalarProduct(int array1[], int array2[])
+int scalarProduct(int array1[], int array2[], int size)
 {
 
     int scalar = 0;
-    for (int i = 0; i < sizeof(array1) / sizeof(array1[0]); i++)
+    for (int i = 0; i < size; i++)
     {
         scalar += array1[i] * array2[i];
     }
@@ -236,33 +241,35 @@ int scalarProduct(int array1[], int array2[])
     return scalar;
 }
 
-void split(char arr1[], char arr2[]){
+void split(char arr1[], char arr2[])
+{
     char *split = strtok(arr1, ",");
     int numbers1[50];
     int numbers2[50];
     int i = 0, j = 0;
-    while(split != NULL){
+    while (split != NULL)
+    {
         numbers1[i] = atoi(split);
         i++;
         split = strtok(NULL, ",");
     }
     split = strtok(arr2, ",");
-    while(split != NULL){
+    while (split != NULL)
+    {
         numbers2[j] = atoi(split);
         j++;
         split = strtok(NULL, ",");
     }
 
-   
-
-    if((sizeof(numbers1)/sizeof(numbers1[0])) != (sizeof(numbers2)/sizeof(numbers2[0]))){
-        printf("Las dos matrices deben tener la misma cantidad de datos");
-    }else{
-         int scalar = scalarProduct(numbers1, numbers2);
-        printf("El producto PUNTO de las dos matrices es: %d\n", scalar);
-        
+    if (i != j)
+    {
+        printf("Las dos matrices deben tener la misma cantidad de datos\n");
     }
-
+    else
+    {
+        int scalar = scalarProduct(numbers1, numbers2, i);
+        printf("El producto PUNTO de las dos matrices es: %d\n", scalar);
+    }
 }
 
 int main()
@@ -328,10 +335,10 @@ int main()
             break;
         case 7:
             printf("Digite los datos de la primer matriz, separelos por comas (Ej: 2,3,5,6)\n");
-            fgets(arrayAux1, 50, stdin );
-            fgets(arrayAux1, 50, stdin );
+            fgets(arrayAux1, 50, stdin);
+            fgets(arrayAux1, 50, stdin);
             printf("Digite los datos de la segunda matriz, separelos por comas (Ej: 2,3,5,6)\n");
-            fgets(arrayAux2, 50, stdin );
+            fgets(arrayAux2, 50, stdin);
 
             split(arrayAux1, arrayAux2);
             break;
