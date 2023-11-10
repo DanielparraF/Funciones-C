@@ -1,7 +1,8 @@
-#include <stdio.h>
+#include<stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
 
 //---------------------------------------------------------------------fechas-------------------------------------------
 void valiteDate(char date[])
@@ -49,7 +50,7 @@ void valiteDate(char date[])
                 printf("Septiembre");
                 break;
             case 10:
-                printf("Octubre");
+                printf("Octubre ");
                 break;
             case 11:
                 printf("noviembre");
@@ -164,6 +165,73 @@ char *calculateNumber(int number)
     return romano;
 }
 
+//Factores Primos
+
+void factoresPrimos(int numero) {
+    int i;
+    int potencia;
+    int factores[100];  // Array para almacenar los factores primos
+    int exponentes[100];  // Array para almacenar los exponentes de los factores primos
+    int num_factors = 0;  // Número de factores primos encontrados hasta ahora
+
+    // For para buscar el numero de factores primos del numero ingresado
+    for (i = 2; i <= sqrt(numero); i++) {
+        potencia = 0;
+        while (numero % i == 0) {
+            potencia++;
+            numero /= i;
+        }
+        if (potencia > 0) {
+            factores[num_factors] = i;
+            exponentes[num_factors] = potencia;
+            num_factors++;
+        }
+    }
+
+    // If n is a prime number greater than 2
+    if (numero > 2) {
+        factores[num_factors] = numero;
+        exponentes[num_factors] = 1;
+        num_factors++;
+    }
+
+    // Ordena los factores primos de mayor a menor
+    for (i = 0; i < num_factors - 1; i++) {
+        for (int j = i + 1; j < num_factors; j++) {
+            if (factores[i] < factores[j]) {
+                int temp = factores[i];
+                factores[i] = factores[j];
+                factores[j] = temp;
+                temp = exponentes[i];
+                exponentes[i] = exponentes[j];
+                exponentes[j] = temp;
+            }
+        }
+    }
+
+    // Imprime la factorización de primos en formato potencia
+    for (i = 0; i < num_factors; i++) {
+        printf("%d^%d ", factores[i], exponentes[i]);
+    }
+    printf("\n");
+}
+
+//Auxiliar de los factores primos
+
+int aux_factoresPrimos() {
+
+    int n;
+    //Le pedimos al usuario que ingrese un numero
+    printf("Ingrese un numero... : ");
+    //capturamos el numero ingresado
+    scanf("%d", &n);
+    printf("la descomposicion del numero en potencias de sus factores primos %d es: ", n);
+    factoresPrimos(n);
+
+    return 0;
+
+}
+
 // Own Names Function
 
 void ownName(char *str)
@@ -214,6 +282,29 @@ int sumDivisors(int number)
     return suma;
 }
 
+//Numeros Egolatras
+
+int Numeros_Egolatras(int n){
+    int numeroDigitos =floor(log10(n)+1);
+    char cadena [numeroDigitos + 1];;
+
+    sprintf (cadena,"%d",n);
+
+    int suma=0;
+    for(int i=0;i<numeroDigitos; i++){
+        int cont = cadena[i] - '0';
+
+        int elevado = pow(cont, numeroDigitos);
+        suma=suma +elevado;
+    }
+    if(suma==n){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
+
 void friendsNumbers(int num1, int num2)
 {
 
@@ -240,6 +331,84 @@ int scalarProduct(int array1[], int array2[], int size)
 
     return scalar;
 }
+
+// Multiplicación Matriz
+
+int multiplicacionMatriz() {
+    int a[15][15], b[15][15], c[15][15];
+    int f1, f2, c1, c2;
+
+    int cont, aux;
+
+    printf("\n Agregue el numero de filas de la matriz 1 \n");
+    scanf("%d", &f1);
+
+    printf("Agregue el numero de columnas de la matriz 1 \n");
+    scanf("%d", &c1);
+
+    printf("Agregue el numero de filas de la matriz 2 \n ");
+    scanf("%d", &f2);
+
+    printf("Agregue el numero de columnas de la matriz 2 \n");
+    scanf("%d", &c2);
+
+
+    if (f1 == c2) {
+
+
+        for (int i = 0; i < f1; ++i) {
+            for (int j = 0; j < c1; ++j) {
+                a[i][j] = rand() % 9 + 1;
+            }
+        }
+
+        for (int i = 0; i < f2; ++i) {
+            for (int j = 0; j < c2; ++j) {
+                b[i][j] = rand() % 9 + 1;
+            }
+        }
+
+        for (int i = 0; i < f1; ++i) {
+            for (int j = 0; j < c1; ++j) {
+                for (cont = 0, aux = 0; cont < c1; ++cont) {
+                    aux = aux + a[i][cont] * b[cont][j];
+                }
+                c[i][j] = aux;
+            }
+        }
+
+        printf("\nPrimer matriz8");
+        for (int i = 0; i < f1; ++i) {
+            printf("\n");
+            for (int j = 0; j < c1; ++j) {
+                printf("\t%d", a[i][j]);
+            }
+        }
+
+        printf("\n Segunda matriz");
+        for (int i = 0; i < f2; ++i) {
+            printf("\n");
+            for (int j = 0; j < c2; ++j) {
+                printf("%d", b[i][j]);
+            }
+        }
+
+        printf("\n Multiplicacion de matriz\n");
+        for (int i = 0; i < f1; ++i) {
+            printf("\n");
+            for (int j = 0; j < c2; ++j) {
+                printf("%d", c[i][j]);
+            }
+        }
+    } else {
+        printf("Null\n");
+        return 0;
+
+    }
+
+    return 0;
+}
+
 
 void split(char arr1[], char arr2[])
 {
@@ -311,7 +480,9 @@ int main()
             }
             break;
         case 2:
-            break;
+            printf("--Factores Primos--\n");
+                aux_factoresPrimos();
+                break;
         case 3:
             printf("Ingrese el nombre que desea convertir a nombre propio: \n");
             fgets(name, 40, stdin);
@@ -319,8 +490,19 @@ int main()
             ownName(name);
 
             break;
-        case 4:
+                int num;
+            case 4:
+
+                num = 0;
+                printf("-------Numeros Egolatras-----\n");
+                printf("Ingrese el numero \n ");
+                scanf("%d",&num);
+                printf("El numero %d %s",num, Numeros_Egolatras( num)?"es egolatra":"No es egolatra\n");
+
+
+                break;
             break;
+
         case 5:
 
             printf("Digite dos valores numericos para comprobar si son numeros amigos:\n");
@@ -343,6 +525,9 @@ int main()
             split(arrayAux1, arrayAux2);
             break;
         case 8:
+            printf("---Multiplicacion de Matrices--");
+                multiplicacionMatriz();
+                printf("\n");
             break;
         case 9:
             break;
