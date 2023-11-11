@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
@@ -165,23 +165,27 @@ char *calculateNumber(int number)
     return romano;
 }
 
-//Factores Primos
+// Factores Primos
 
-void factoresPrimos(int numero) {
+void factoresPrimos(int numero)
+{
     int i;
     int potencia;
-    int factores[100];  // Array para almacenar los factores primos
-    int exponentes[100];  // Array para almacenar los exponentes de los factores primos
-    int num_factors = 0;  // Número de factores primos encontrados hasta ahora
+    int factores[100];   // Array para almacenar los factores primos
+    int exponentes[100]; // Array para almacenar los exponentes de los factores primos
+    int num_factors = 0; // Número de factores primos encontrados hasta ahora
 
     // For para buscar el numero de factores primos del numero ingresado
-    for (i = 2; i <= sqrt(numero); i++) {
+    for (i = 2; i <= sqrt(numero); i++)
+    {
         potencia = 0;
-        while (numero % i == 0) {
+        while (numero % i == 0)
+        {
             potencia++;
             numero /= i;
         }
-        if (potencia > 0) {
+        if (potencia > 0)
+        {
             factores[num_factors] = i;
             exponentes[num_factors] = potencia;
             num_factors++;
@@ -189,16 +193,20 @@ void factoresPrimos(int numero) {
     }
 
     // If n is a prime number greater than 2
-    if (numero > 2) {
+    if (numero > 2)
+    {
         factores[num_factors] = numero;
         exponentes[num_factors] = 1;
         num_factors++;
     }
 
     // Ordena los factores primos de mayor a menor
-    for (i = 0; i < num_factors - 1; i++) {
-        for (int j = i + 1; j < num_factors; j++) {
-            if (factores[i] < factores[j]) {
+    for (i = 0; i < num_factors - 1; i++)
+    {
+        for (int j = i + 1; j < num_factors; j++)
+        {
+            if (factores[i] < factores[j])
+            {
                 int temp = factores[i];
                 factores[i] = factores[j];
                 factores[j] = temp;
@@ -210,37 +218,37 @@ void factoresPrimos(int numero) {
     }
 
     // Imprime la factorización de primos en formato potencia
-    for (i = 0; i < num_factors; i++) {
+    for (i = 0; i < num_factors; i++)
+    {
         printf("%d^%d ", factores[i], exponentes[i]);
     }
     printf("\n");
 }
 
-//Auxiliar de los factores primos
+// Auxiliar de los factores primos
 
-int aux_factoresPrimos() {
+int aux_factoresPrimos()
+{
 
     int n;
-    //Le pedimos al usuario que ingrese un numero
+    // Le pedimos al usuario que ingrese un numero
     printf("Ingrese un numero... : ");
-    //capturamos el numero ingresado
+    // capturamos el numero ingresado
     scanf("%d", &n);
     printf("la descomposicion del numero en potencias de sus factores primos %d es: ", n);
     factoresPrimos(n);
 
     return 0;
-
 }
 
 // Own Names Function
 
 void ownName(char *str)
 {
-    for (int i = 0; str[i]; i++) {
+    for (int i = 0; str[i]; i++)
+    {
 
-            str[i] = tolower(str[i]);
-        
-        
+        str[i] = tolower(str[i]);
     }
 
     char *split;
@@ -257,7 +265,6 @@ void ownName(char *str)
     {
         if (strlen(aux[j]) > 1)
 
-        
         {
             aux[j][0] = toupper(aux[j][0]);
         }
@@ -282,28 +289,32 @@ int sumDivisors(int number)
     return suma;
 }
 
-//Numeros Egolatras
+// Numeros Egolatras
 
-int Numeros_Egolatras(int n){
-    int numeroDigitos =floor(log10(n)+1);
-    char cadena [numeroDigitos + 1];;
+int Numeros_Egolatras(int n)
+{
+    int numeroDigitos = floor(log10(n) + 1);
+    char cadena[numeroDigitos + 1];
 
-    sprintf (cadena,"%d",n);
+    sprintf(cadena, "%d", n);
 
-    int suma=0;
-    for(int i=0;i<numeroDigitos; i++){
+    int suma = 0;
+    for (int i = 0; i < numeroDigitos; i++)
+    {
         int cont = cadena[i] - '0';
 
         int elevado = pow(cont, numeroDigitos);
-        suma=suma +elevado;
+        suma = suma + elevado;
     }
-    if(suma==n){
+    if (suma == n)
+    {
         return 1;
-    }else{
+    }
+    else
+    {
         return 0;
     }
 }
-
 
 void friendsNumbers(int num1, int num2)
 {
@@ -334,7 +345,8 @@ int scalarProduct(int array1[], int array2[], int size)
 
 // Multiplicación Matriz
 
-int multiplicacionMatriz() {
+int multiplicacionMatriz()
+{
     int a[15][15], b[15][15], c[15][15];
     int f1, f2, c1, c2;
 
@@ -352,25 +364,31 @@ int multiplicacionMatriz() {
     printf("Agregue el numero de columnas de la matriz 2 \n");
     scanf("%d", &c2);
 
+    if (f1 == c2)
+    {
 
-    if (f1 == c2) {
-
-
-        for (int i = 0; i < f1; ++i) {
-            for (int j = 0; j < c1; ++j) {
+        for (int i = 0; i < f1; ++i)
+        {
+            for (int j = 0; j < c1; ++j)
+            {
                 a[i][j] = rand() % 9 + 1;
             }
         }
 
-        for (int i = 0; i < f2; ++i) {
-            for (int j = 0; j < c2; ++j) {
+        for (int i = 0; i < f2; ++i)
+        {
+            for (int j = 0; j < c2; ++j)
+            {
                 b[i][j] = rand() % 9 + 1;
             }
         }
 
-        for (int i = 0; i < f1; ++i) {
-            for (int j = 0; j < c1; ++j) {
-                for (cont = 0, aux = 0; cont < c1; ++cont) {
+        for (int i = 0; i < f1; ++i)
+        {
+            for (int j = 0; j < c1; ++j)
+            {
+                for (cont = 0, aux = 0; cont < c1; ++cont)
+                {
                     aux = aux + a[i][cont] * b[cont][j];
                 }
                 c[i][j] = aux;
@@ -378,44 +396,54 @@ int multiplicacionMatriz() {
         }
 
         printf("\nPrimer matriz8");
-        for (int i = 0; i < f1; ++i) {
+        for (int i = 0; i < f1; ++i)
+        {
             printf("\n");
-            for (int j = 0; j < c1; ++j) {
+            for (int j = 0; j < c1; ++j)
+            {
                 printf("\t%d", a[i][j]);
             }
         }
 
         printf("\n Segunda matriz");
-        for (int i = 0; i < f2; ++i) {
+        for (int i = 0; i < f2; ++i)
+        {
             printf("\n");
-            for (int j = 0; j < c2; ++j) {
+            for (int j = 0; j < c2; ++j)
+            {
                 printf("%d", b[i][j]);
             }
         }
 
         printf("\n Multiplicacion de matriz\n");
-        for (int i = 0; i < f1; ++i) {
+        for (int i = 0; i < f1; ++i)
+        {
             printf("\n");
-            for (int j = 0; j < c2; ++j) {
+            for (int j = 0; j < c2; ++j)
+            {
                 printf("%d", c[i][j]);
             }
         }
-    } else {
+    }
+    else
+    {
         printf("Null\n");
         return 0;
-
     }
 
     return 0;
 }
 //----------------------------matriz magica----------------------------------
 
-void generarMatrizMagica(int orden, int matriz[][orden]) {
+void generarMatrizMagica(int orden, int matriz[][orden])
+{
     int i, j;
 
     // Inicializar la matriz con ceros
-    for(i = 0; i < orden; i++) {
-        for(j = 0; j < orden; j++) {
+    for (i = 0; i < orden; i++)
+    {
+        for (j = 0; j < orden; j++)
+        {
             matriz[i][j] = 0;
         }
     }
@@ -425,39 +453,44 @@ void generarMatrizMagica(int orden, int matriz[][orden]) {
     j = orden / 2;
 
     // Llenar la matriz con valores
-    for(int num = 1; num <= orden * orden; num++) {
+    for (int num = 1; num <= orden * orden; num++)
+    {
         matriz[i][j] = num;
         i--;
         j++;
 
         // Si i se vuelve negativo, regresar al último renglón
-        if(i < 0) {
+        if (i < 0)
+        {
             i = orden - 1;
         }
 
         // Si j se va más allá de la última columna, regresar a la primera columna
-        if(j == orden) {
+        if (j == orden)
+        {
             j = 0;
         }
 
         // Si la celda ya está ocupada, retroceder una fila y avanzar una columna
-        if(matriz[i][j] != 0) {
+        if (matriz[i][j] != 0)
+        {
             i += 2;
             j--;
         }
     }
 }
 
-void imprimirMatriz(int orden, int matriz[][orden]) {
-    for(int i = 0; i < orden; i++) {
-        for(int j = 0; j < orden; j++) {
+void imprimirMatriz(int orden, int matriz[][orden])
+{
+    for (int i = 0; i < orden; i++)
+    {
+        for (int j = 0; j < orden; j++)
+        {
             printf("%d\t", matriz[i][j]);
         }
         printf("\n");
     }
 }
-
-
 
 void split(char arr1[], char arr2[])
 {
@@ -481,7 +514,7 @@ void split(char arr1[], char arr2[])
 
     if (i != j)
     {
-        printf("Los dos arreglos deben tener la misma cantidad de datos\n");
+        printf("Null: Los dos arreglos deben tener la misma cantidad de datos\n");
     }
     else
     {
@@ -493,11 +526,12 @@ void split(char arr1[], char arr2[])
 int main()
 {
     int option, number, num1, num2, orden;
-    int matriz [orden][orden];
+    int matriz[orden][orden];
     char dateIn[10];
     char name[80];
     char arrayAux1[50];
     char arrayAux2[50];
+    int num;
     do
     {
         printf("------Bienvenido a su menu de funciones------\n"
@@ -531,8 +565,8 @@ int main()
             break;
         case 2:
             printf("--Factores Primos--\n");
-                aux_factoresPrimos();
-                break;
+            aux_factoresPrimos();
+            break;
         case 3:
             printf("Ingrese el nombre que desea convertir a nombre propio: \n");
             fgets(name, 40, stdin);
@@ -540,17 +574,14 @@ int main()
             ownName(name);
 
             break;
-                int num;
-            case 4:
 
-                num = 0;
-                printf("-------Numeros Egolatras-----\n");
-                printf("Ingrese el numero \n ");
-                scanf("%d",&num);
-                printf("El numero %d %s",num, Numeros_Egolatras( num)?"es egolatra":"No es egolatra\n");
+        case 4:
 
-
-                break;
+            num = 0;
+            printf("-------Numeros Egolatras-----\n");
+            printf("Ingrese el numero \n ");
+            scanf("%d", &num);
+            printf("El numero %d %s", num, Numeros_Egolatras(num) ? "es egolatra\n" : "No es egolatra\n");
             break;
 
         case 5:
@@ -566,31 +597,32 @@ int main()
             valiteDate(dateIn);
             break;
         case 7:
-            printf("Digite los datos de la primer matriz, separelos por comas (Ej: 2,3,5,6)\n");
+            printf("Digite los datos del primer arreglo, separelos por comas (Ej: 2,3,5,6)\n");
             fgets(arrayAux1, 50, stdin);
             fgets(arrayAux1, 50, stdin);
-            printf("Digite los datos de la segunda matriz, separelos por comas (Ej: 2,3,5,6)\n");
+            printf("Digite los datos del segundo arreglo, separelos por comas (Ej: 2,3,5,6)\n");
             fgets(arrayAux2, 50, stdin);
 
             split(arrayAux1, arrayAux2);
             break;
         case 8:
             printf("---Multiplicacion de Matrices--");
-                multiplicacionMatriz();
-                printf("\n");
+            multiplicacionMatriz();
+            printf("\n");
             break;
         case 9:
             printf("Ingrese el orden de la matriz (debe ser un número impar):");
-                scanf("%d",&orden);
-                if(orden%2==0){
-                    printf("el orden debe ser un numero impar");
-                    return 1;
-                }
-                //genero la matriz magica
-                generarMatrizMagica(orden, matriz);
-                // mostrar la matriz mágica
-                printf("Matriz mágica de orden %d:\n", orden);
-                imprimirMatriz(orden, matriz);
+            scanf("%d", &orden);
+            if (orden % 2 == 0)
+            {
+                printf("el orden debe ser un numero impar");
+                return 1;
+            }
+            // genero la matriz magica
+            generarMatrizMagica(orden, matriz);
+            // mostrar la matriz mágica
+            printf("Matriz mágica de orden %d:\n", orden);
+            imprimirMatriz(orden, matriz);
             break;
         case 10:
             printf("gracias por utlilizar nuestras Funciones");
