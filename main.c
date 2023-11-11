@@ -408,6 +408,55 @@ int multiplicacionMatriz() {
 
     return 0;
 }
+//----------------------------matriz magica----------------------------------
+
+void generarMatrizMagica(int orden, int matriz[][orden]) {
+    int i, j;
+
+    // Inicializar la matriz con ceros
+    for(i = 0; i < orden; i++) {
+        for(j = 0; j < orden; j++) {
+            matriz[i][j] = 0;
+        }
+    }
+
+    // Inicializar las posiciones iniciales
+    i = 0;
+    j = orden / 2;
+
+    // Llenar la matriz con valores
+    for(int num = 1; num <= orden * orden; num++) {
+        matriz[i][j] = num;
+        i--;
+        j++;
+
+        // Si i se vuelve negativo, regresar al último renglón
+        if(i < 0) {
+            i = orden - 1;
+        }
+
+        // Si j se va más allá de la última columna, regresar a la primera columna
+        if(j == orden) {
+            j = 0;
+        }
+
+        // Si la celda ya está ocupada, retroceder una fila y avanzar una columna
+        if(matriz[i][j] != 0) {
+            i += 2;
+            j--;
+        }
+    }
+}
+
+void imprimirMatriz(int orden, int matriz[][orden]) {
+    for(int i = 0; i < orden; i++) {
+        for(int j = 0; j < orden; j++) {
+            printf("%d\t", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
 
 
 void split(char arr1[], char arr2[])
@@ -432,18 +481,19 @@ void split(char arr1[], char arr2[])
 
     if (i != j)
     {
-        printf("Las dos matrices deben tener la misma cantidad de datos\n");
+        printf("Los dos arreglos deben tener la misma cantidad de datos\n");
     }
     else
     {
         int scalar = scalarProduct(numbers1, numbers2, i);
-        printf("El producto PUNTO de las dos matrices es: %d\n", scalar);
+        printf("El producto PUNTO de los 2 arreglos es: %d\n", scalar);
     }
 }
 
 int main()
 {
-    int option, number, num1, num2;
+    int option, number, num1, num2, orden;
+    int matriz [orden][orden];
     char dateIn[10];
     char name[80];
     char arrayAux1[50];
@@ -530,8 +580,20 @@ int main()
                 printf("\n");
             break;
         case 9:
+            printf("Ingrese el orden de la matriz (debe ser un número impar):");
+                scanf("%d",&orden);
+                if(orden%2==0){
+                    printf("el orden debe ser un numero impar");
+                    return 1;
+                }
+                //genero la matriz magica
+                generarMatrizMagica(orden, matriz);
+                // mostrar la matriz mágica
+                printf("Matriz mágica de orden %d:\n", orden);
+                imprimirMatriz(orden, matriz);
             break;
         case 10:
+            printf("gracias por utlilizar nuestras Funciones");
             break;
         default:
             printf("Opcion Invalida!\n");
