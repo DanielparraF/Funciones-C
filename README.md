@@ -1,7 +1,7 @@
 # Funciones-C
 # Integrantes del Proyecto
 
-Juan Davidn Muñoz
+Juan David Muñoz
 
 Daniel Parra
 
