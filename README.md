@@ -1,4 +1,11 @@
 # Funciones-C
+# Integrantes del Proyecto
+
+Juan Davidn Muñoz
+
+Daniel Parra
+
+David Nuncira
 
 # Configuración del Entorno
 
